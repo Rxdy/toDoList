@@ -2,12 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <link rel="stylesheet" href="./src/css/connexion.css">
+    <script type="module" src="./src/js/connexion.js"></script>
+  
+    <title>Todo-list</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+      <div id="logOn">
+        <form>
+          <h1>Connexion</h1>
+          <div class="item-form">
+            <label>Mail</label>
+            <input id="mail" type="text" required>
+          </div>
+
+          <div class="item-form">
+            <label>Mot de passe</label>
+            <input id="password" type="password" required>
+          </div>
+          
+          <div class="item-form">
+            <button id="btnLog">Connexion</button>
+          </div>
+        
+        </form>
+      </div>
   </body>
 </html>

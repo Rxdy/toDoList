@@ -1,21 +1,17 @@
 import { defineConfig } from "vite";
 
-// https://vite.dev/config/
 export default defineConfig({
   server: {
-    host: true,
-    port: 5173,
-  
-  hmr: {
-    protocol: "ws",
-    host: "host.docker.internal",
-    port: 5173,
+    host: true, // Permet d'exposer le serveur en réseau
+    port: 5173,// Assure que Vite ne choisit pas un autre port
+    hmr: {
+      protocol: "ws",
+      host: "localhost", // Peut être remplacé par "0.0.0.0" si problème
+      clientPort: 5173, // Important pour Docker
+    },
+    watch: {
+      usePolling: true, // Permet de mieux détecter les fichiers modifiés
+      interval: 1000,
+    },
   },
-
-  watch: {
-    usePolling: true, // C'est déjà configuré, assure-toi que cette option est activée
-    interval: 1000, // Vérifie les fichiers toutes les 1000ms
-    binaryInterval: 3000,
-  },
-},
 });

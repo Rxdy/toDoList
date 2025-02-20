@@ -18,6 +18,8 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+import auth from "./routes/auth";
+app.use("/auth", auth);
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello Abend !");

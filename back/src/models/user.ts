@@ -23,9 +23,10 @@ class User
 User.init(
     {
         id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true,
         },
         pseudo: {
             type: DataTypes.STRING,
