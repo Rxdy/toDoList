@@ -1,0 +1,54 @@
+services:
+    bdd:
+        image: mysql
+        container_name: bdd
+        environment:
+            - MYSQL_DATABASE=todo
+            - MYSQL_ROOT_PASSWORD=root
+        volumes:
+            - bdd-todo:/var/lib/mysql
+        networks:
+            - todo
+    server:
+        image: node:20
+        container_name: API
+        ports:
+            - "5000:5000"
+        working_dir: /app
+        command: sh -c "npm install && npm run dev"
+        environment:
+            - NODE_ENV=dev
+        volumes:
+            - ./back:/app
+        networks:
+            - todo
+        stop_grace_period: 1s
+
+    client:
+        image: node:20
+        container_name: front
+        ports:
+            - "5173:5173"
+        working_dir: /app
+        command: sh -c "npm install && npm run dev"
+        volumes:
+            - ./front:/app
+        networks:
+            - todo
+        stop_grace_period: 1s
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: IG-bdd
+        environment:
+            - PMA_HOST=bdd
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+        ports:
+            - "8080:80"
+        networks:
+            - todo
+networks:
+    todo:
+volumes:
+    bdd-todo: {}
